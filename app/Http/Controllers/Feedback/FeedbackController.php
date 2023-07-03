@@ -13,31 +13,34 @@ use Illuminate\Http\JsonResponse;
 class FeedbackController extends Controller
 {
     public function store(FeedbackStoreRequest $request): JsonResponse
-{
-    
-    $data = $request->validated();
+    {
 
-    $feedback = app(FeedbackUseCases::class)->acceptFeedback(new AcceptFeedbackData(
-        title: $data['title'],
-        description: $data['description'],
-        datetime: $this->convertTimestampToDT($data['datetime']),
-        service_name: $data['service_name'],
-        rating: $data['rating'],
-    ));
+        $data = $request->validated();
 
-    return response()->json([
-        'id' => $feedback->id
-    ], 201);
-}
+        $feedback = app(FeedbackUseCases::class)->acceptFeedback(new AcceptFeedbackData(
+            title: $data['title'],
+            description: $data['description'],
+            datetime: $this->convertTimestampToDT($data['datetime']),
+            service_name: $data['service_name'],
+            rating: $data['rating'],
+        ));
+
+        return response()->json([
+            'id' => $feedback->id
+        ], 201);
+    }
 
     public function show(Feedback $feedback): JsonResponse
     {
         return response()->json([
             'title' => $feedback->title,
             'description' => $feedback->description,
-            'datetime' => DateTime::createFromFormat('Y-m-d H:i:s', $feedback->datetime)->getTimestamp()
+            'datetime' => DateTime::createFromFormat('Y-m-d H:i:s', $feedback->datetime)->getTimestamp(),
+            'service_name' => $feedback->service_name, 
+            'rating' => $feedback->rating, 
         ]);
     }
+
 
     private function convertTimestampToDT($microtime): DateTime
     {
