@@ -36,7 +36,7 @@
                 px-3 py-2 border-2 border-gray-300 rounded-md shadow-inner
                 focus-visible:outline-brand-2 outline-2
             ">
-                <vue3-star-ratings v-model="data.rating" :star-size="20" :show-rating="false" :increment="1"></vue3-star-ratings>
+                <vue3-star-ratings v-model="data.rating" :star-size="20" :show-rating="false" :step="1"></vue3-star-ratings>
             </label>
 
             <label class="flex flex-col gap-y-0.5 text-gray-500 focus-within:text-brand-2">
