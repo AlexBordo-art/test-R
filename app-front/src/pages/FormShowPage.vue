@@ -1,18 +1,25 @@
 <template>
- <main class="flex items-center justify-center h-screen">
-  <div class="
-   border-8 border-gray-200 rounded-xl
-   w-[500px] -mt-14 p-8
-   flex flex-col gap-y-5
-  ">
-   <div v-if="feedback.isLoaded" class="flex flex-col">
-    <h1 class="text-3xl font-medium text-gray-500">{{ feedback.title }}</h1>
-    <p class="text-sm text-gray-400">{{ datetime }}</p>
-    <p class="text-base mt-2 text-gray-500">{{ feedback.description }}</p>
-    <!-- Новые поля -->
-    <p class="text-base mt-2 text-gray-500">Сервис: {{ feedback.service_name }}</p>
-    <p class="text-base mt-2 text-gray-500">Рейтинг: {{ feedback.rating }}</p>
-   </div>
+  <main class="flex items-center justify-center h-screen">
+    <div class="
+      border-8 border-gray-200 rounded-xl
+      w-[500px] -mt-14 p-8
+      flex flex-col gap-y-5
+    ">
+      <div v-if="feedback.isLoaded" class="flex flex-col">
+        <h1 class="text-3xl font-medium text-gray-500">{{ feedback.title }}</h1>
+        <p class="text-sm text-gray-400">{{ datetime }}</p>
+        <p class="text-base mt-2 text-gray-500">{{ feedback.description }}</p>
+        <!-- Новые поля -->
+        <p class="text-base mt-2 text-gray-500">Сервис: {{ feedback.service_name }}</p>
+        <p class="text-base mt-2 text-gray-500">Рейтинг: {{ feedback.rating }}</p>
+        <div class="flex">
+          <template v-for="star in 5" :key="star">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" :class="{ 'text-yellow-500': star <= feedback.rating, 'text-gray-300': star > feedback.rating }">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15.638l-6.172 3.245a1 1 0 01-1.452-1.054l1.794-6.928-5.286-4.086a1 1 0 01.554-1.705l6.573-.573L11.794.221a1 1 0 011.412 0l2.382 5.272 6.573.573a1 1 0 01.554 1.705l-5.286 4.086 1.794 6.928a1 1 0 01-1.452 1.054L12 15.638z"/>
+            </svg>
+          </template>
+        </div>
+      </div>
    <div>
     <RouterLink
      :to="{ name: 'feedback-create' }"
@@ -76,3 +83,4 @@ interface FeedbackResponse {
  rating: number; // новое поле
 }
 </script>
+
