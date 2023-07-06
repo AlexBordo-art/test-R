@@ -59,8 +59,9 @@ const feedback = reactive({
  isLoaded: false
 });
 const datetime = computed(() => {
- return new Date(Number(feedback.datetime)).toLocaleString()
+ return new Date(feedback.datetime).toLocaleString()
 })
+
 onBeforeMount(() => {
  axios.get<FeedbackResponse>(env.backend_url + `/feedbacks/${idFromRouter}`)
  .then(feedbackResponse => {

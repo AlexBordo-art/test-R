@@ -35,7 +35,7 @@ class FeedbackController extends Controller
         return response()->json([
             'title' => $feedback->title,
             'description' => $feedback->description,
-            'datetime' => DateTime::createFromFormat('Y-m-d H:i:s', $feedback->datetime)->getTimestamp(),
+            'datetime' => $feedback->datetime,
             'service_name' => $feedback->service_name, 
             'rating' => $feedback->rating, 
         ]);

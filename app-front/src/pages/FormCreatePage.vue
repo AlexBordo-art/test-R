@@ -98,8 +98,8 @@ const sendFormImpl = async () => {
         'title': data.title,
         'service_name': data.service_name, 
         'rating': data.rating,
+        'datetime': Date.now()
 
-        'datetime':  new Date(data.datetime).getTime()
     });
 }
 
